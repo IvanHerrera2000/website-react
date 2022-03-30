@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Navbar from "components/Navbar/Navbar";
+import Navbar from "components/Navbar";
 import home from "assets/home.png";
 import play from "assets/play.png";
 
@@ -94,6 +94,7 @@ const Section = styled.section`
       }
     }
   }
+
   .info {
     position: absolute;
     bottom: -6rem;
