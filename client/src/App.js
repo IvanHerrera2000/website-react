@@ -5,6 +5,7 @@ import Services from "components/Services";
 import Milestones from "components/Milestones";
 import Blog from "components/Blog";
 import Video from "components/Video";
+import Pricing from "components/Pricing";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Milestones />
       <Blog />
       <Video />
+      <Pricing />
     </div>
   );
 }
