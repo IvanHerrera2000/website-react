@@ -8,6 +8,7 @@ import Video from "components/Video";
 import Pricing from "components/Pricing";
 import Testimonials from "components/Testimonials";
 import Skills from "components/Skills";
+import Contact from "components/Contact";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Pricing />
       <Testimonials />
       <Skills />
+      <Contact />
     </div>
   );
 }
