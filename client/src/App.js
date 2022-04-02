@@ -9,6 +9,7 @@ import Pricing from "components/Pricing";
 import Testimonials from "components/Testimonials";
 import Skills from "components/Skills";
 import Contact from "components/Contact";
+import Footer from "components/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Testimonials />
       <Skills />
       <Contact />
+      <Footer />
     </div>
   );
 }
