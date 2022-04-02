@@ -263,4 +263,36 @@ const Section = styled.section`
       cursor: pointer;
     }
   }
+
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    .background {
+      display: none;
+    }
+
+    .portfolio__title {
+      margin: 0;
+      padding: 0 2rem;
+      text-align: center;
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .grid {
+      padding: 2rem 4rem;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "one"
+        "two"
+        "three"
+        "four"
+        "five"
+        "six"
+        "seven"
+        "eight";
+      .grid-box {
+        height: 10rem !important;
+      }
+    }
+  }
 `;

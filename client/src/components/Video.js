@@ -64,4 +64,20 @@ const Section = styled.section`
       top: 3rem;
     }
   }
+
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    .background {
+      display: none;
+    }
+
+    height: 100%;
+    padding: 6rem 2rem;
+
+    .video {
+      iframe {
+        height: 10rem;
+        width: 80vw;
+      }
+    }
+  }
 `;

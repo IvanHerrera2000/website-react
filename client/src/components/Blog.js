@@ -131,4 +131,18 @@ const Section = styled.section`
       }
     }
   }
+
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    margin: 2rem 0;
+
+    .decoration {
+      display: none;
+    }
+
+    .blogs {
+      padding: 0 2rem;
+      grid-template-columns: 1fr;
+      margin: 0 1rem;
+    }
+  }
 `;
