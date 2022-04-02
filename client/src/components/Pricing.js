@@ -1,11 +1,16 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import Title from "./Title";
 import play from "assets/play.png";
 import pricing1 from "assets/pricing1.png";
 import pricing2 from "assets/pricing2.png";
-import Title from "./Title";
+import { motion } from "framer-motion";
+import { useScroll } from "./useScroll";
+import { pricingAnimations } from "animations";
 
 function Pricing() {
+  const [element, controls] = useScroll();
+
   const plans = [
     {
       name: "Basic",
@@ -20,7 +25,6 @@ function Pricing() {
       price: 49,
     },
   ];
-
   const data = [
     {
       value: "25 Users per Project",
@@ -65,7 +69,7 @@ function Pricing() {
   ];
 
   return (
-    <Section>
+    <Section ref={element}>
       <Title value="pricing" />
       <div className="background">
         <img src={pricing1} alt="background" className="bg1" />
@@ -78,7 +82,18 @@ function Pricing() {
       <div className="pricing">
         {plans.map(({ name, price }, index) => {
           return (
-            <div className="pricing__plan">
+            <motion.div
+              className="pricing__plan"
+              key={index}
+              variants={pricingAnimations}
+              animate={controls}
+              transition={{
+                delay: 0.03,
+                type: "tween",
+                duration: 0.8,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
               <div className="pricing__plan__name">
                 <h2>{name}</h2>
                 <div className="pricing__plan__name__price">
@@ -115,7 +130,7 @@ function Pricing() {
                   <img src={play} alt="order now" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

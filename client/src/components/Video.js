@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import video1 from "assets/video1.png";
 import video2 from "assets/video2.png";
+import { motion } from "framer-motion";
+import { videoAnimations } from "animations";
 
 function Video() {
   return (
@@ -10,20 +12,31 @@ function Video() {
         <img src={video1} alt="Design" className="design1" />
         <img src={video2} alt="Design" className="design2" />
       </div>
-      <div className="video">
+      <motion.div
+        className="video"
+        variants={videoAnimations}
+        transition={{
+          delay: 0.03,
+          type: "tween",
+          duration: 0.8,
+        }}
+        whileInView={{ opacity: 1 }}
+      >
         <iframe
-          width="853"
-          height="480"
-          src="https://www.youtube.com/embed/f02mOEt11OQ"
+          width="960"
+          height="515"
+          src="https://www.youtube.com/embed/B_RNoAScPMI"
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
-      </div>
+      </motion.div>
     </Section>
   );
 }
+
+export default Video;
 
 const Section = styled.section`
   background-color: #662d91aa;
@@ -52,5 +65,3 @@ const Section = styled.section`
     }
   }
 `;
-
-export default Video;

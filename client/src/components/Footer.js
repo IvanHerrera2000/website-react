@@ -1,17 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import { BsBehance, BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs";
+import { footerLogoAnimations, footerTextAnimations } from "animations";
+import { useScroll } from "./useScroll";
+import { motion } from "framer-motion";
 
 function Footer() {
+  const [element, controls] = useScroll();
+
   return (
-    <Foot>
-      <span>&copy; 2022 copyrigth all rigth reserved</span>
-      <div className="footer__social__icons">
+    <Foot ref={element}>
+      <motion.span
+        animate={controls}
+        variants={footerTextAnimations}
+        transition={{
+          delay: 0.02,
+          type: "tween",
+          duration: 0.8,
+        }}
+      >
+        &copy; Template created with love by Kishan Sheth
+      </motion.span>
+      <motion.div
+        className="footer__social__icons"
+        animate={controls}
+        variants={footerLogoAnimations}
+        transition={{
+          delay: 0.02,
+          type: "tween",
+          duration: 0.8,
+        }}
+      >
         <BsBehance />
         <BsTwitter />
         <BsFacebook />
         <BsYoutube />
-      </div>
+      </motion.div>
     </Foot>
   );
 }

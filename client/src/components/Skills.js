@@ -3,8 +3,12 @@ import styled from "styled-components";
 import Title from "./Title";
 import skills1 from "assets/skills1.png";
 import skills2 from "assets/skills2.png";
+import { skillsBarAnimations } from "animations";
+import { motion } from "framer-motion";
+import { useScroll } from "./useScroll";
 
 function Skills() {
+  const [element, controls] = useScroll();
   const skillsData = [
     {
       name: "creativity",
@@ -29,7 +33,7 @@ function Skills() {
   ];
 
   return (
-    <Section id="skills">
+    <Section id="skills" ref={element}>
       <Title value="skills" />
       <div className="background">
         <img src={skills1} alt="skills design" className="design1" />
@@ -43,13 +47,24 @@ function Skills() {
         <div className="skills__bars">
           {skillsData.map(({ name, amount }) => {
             return (
-              <div className="skills__bars__bar" key={name}>
+              <motion.div
+                className="skills__bars__bar"
+                key={name}
+                variants={skillsBarAnimations}
+                animate={controls}
+                transition={{
+                  delay: 0.03,
+                  type: "tween",
+                  duration: 0.8,
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+              >
                 <div className="container">
                   <progress value={amount} max="100" />
                   <span>{name}</span>
                 </div>
                 <h3>{amount}%</h3>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -57,16 +72,18 @@ function Skills() {
           <p className="title">
             Lorem ipsum dolor, sit amet consectetur impedit?
           </p>
-          <div className="description">
+          <p className="description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eius
             cupiditate incidunt distinctio velit quos dolore, ut, tempore
             suscipit impedit reiciendis voluptas, illo expedita! Necessitatibus!
-          </div>
+          </p>
         </div>
       </div>
     </Section>
   );
 }
+
+export default Skills;
 
 const Section = styled.section`
   min-height: 100vh;
@@ -167,5 +184,3 @@ const Section = styled.section`
     }
   }
 `;
-
-export default Skills;

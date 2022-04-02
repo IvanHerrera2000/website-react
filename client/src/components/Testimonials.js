@@ -3,10 +3,13 @@ import styled from "styled-components";
 import placeholder from "assets/placeholder.png";
 import testimonial1 from "assets/testimonial1.png";
 import testimonial2 from "assets/testimonial2.png";
+import { motion } from "framer-motion";
+import { useScroll } from "./useScroll";
+import { testimonialsAnimation } from "animations";
 
 function Testimonials() {
+  const [element, controls] = useScroll();
   const [selected, setSelected] = useState(0);
-
   const testimonials = [
     {
       designation: "Designer",
@@ -29,14 +32,24 @@ function Testimonials() {
   ];
 
   return (
-    <Section>
+    <Section ref={element}>
       <div className="background">
         <img src={testimonial1} alt="background design" className="design1" />
         <img src={testimonial2} alt="background design" className="design2" />
       </div>
       <div className="container">
-        <div className="testimonials">
-          {testimonials.map(({ designation, name, review }, index) => {
+        <motion.div
+          className="testimonials"
+          variants={testimonialsAnimation}
+          animate={controls}
+          transition={{
+            delay: 0.03,
+            type: "tween",
+            duration: 0.8,
+          }}
+          whileInView={{ opacity: 1 }}
+        >
+          {testimonials.map((testimonial, index) => {
             return (
               <div
                 className={`testimonial ${
@@ -51,15 +64,24 @@ function Testimonials() {
                   </div>
                 </div>
                 <div className="title-container">
-                  <span className="designation">{designation}</span>
-                  <h3 className="title">{name}</h3>
+                  <span className="designation">{testimonial.designation}</span>
+                  <h3 className="title">{testimonial.name}</h3>
                 </div>
-                <p className="description">{review}</p>
+                <p className="description">{testimonial.review}</p>
               </div>
             );
           })}
-        </div>
-        <div className="controls">
+        </motion.div>
+        <motion.div
+          className="controls"
+          variants={testimonialsAnimation}
+          animate={controls}
+          transition={{
+            delay: 0.03,
+            type: "tween",
+            duration: 0.8,
+          }}
+        >
           <button
             className={selected === 0 ? "active" : ""}
             onClick={() => {
@@ -74,7 +96,7 @@ function Testimonials() {
             className={selected === 2 ? "active" : ""}
             onClick={() => setSelected(2)}
           ></button>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );

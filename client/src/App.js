@@ -1,20 +1,22 @@
-import React from "react";
-import Home from "components/Home.js";
-import Portfolio from "components/Portfolio";
-import Services from "components/Services";
-import Milestones from "components/Milestones";
 import Blog from "components/Blog";
-import Video from "components/Video";
-import Pricing from "components/Pricing";
-import Testimonials from "components/Testimonials";
-import Skills from "components/Skills";
 import Contact from "components/Contact";
 import Footer from "components/Footer";
+import Home from "components/Home";
+import Milestones from "components/Milestones";
+import Portfolio from "components/Portfolio";
+import Pricing from "components/Pricing";
 import ScrollToTop from "components/ScrollToTop";
+import Services from "components/Services";
+import Skills from "components/Skills";
+import Testimonials from "components/Testimonials";
+import Video from "components/Video";
+import React from "react";
+import { motion } from "framer-motion";
 
 function App() {
   return (
-    <div>
+    <motion.div initial="hidden" animate="show">
+      <ScrollToTop />
       <Home />
       <Services />
       <Portfolio />
@@ -26,8 +28,7 @@ function App() {
       <Skills />
       <Contact />
       <Footer />
-      <ScrollToTop />
-    </div>
+    </motion.div>
   );
 }
 

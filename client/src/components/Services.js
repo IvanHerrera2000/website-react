@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import Title from "components/Title";
 import service1 from "assets/service1.png";
 import service2 from "assets/service2.png";
 import service3 from "assets/service3.png";
 import play from "assets/play.png";
-import Title from "components/Title";
+import { motion } from "framer-motion";
+import { useScroll } from "./useScroll";
+import { servicesAnimations } from "animations";
 
 function Services() {
+  const [element, controls] = useScroll();
   const data = [
     {
       type: "Design",
@@ -26,22 +30,33 @@ function Services() {
   ];
 
   return (
-    <Section id="services">
+    <Section id="services" ref={element}>
       <Title value="services" />
       <div className="services">
-        {data.map(({ type, text, image }, index) => {
+        {data.map((service, index) => {
           return (
-            <div className="services__service">
+            <motion.div
+              className="services__service"
+              key={service.type}
+              variants={servicesAnimations}
+              animate={controls}
+              transition={{
+                delay: 0.03,
+                type: "tween",
+                duration: 0.8,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
               <div className="services__service__image">
-                <img src={image} alt="service" />
+                <img src={service.image} alt="service" />
               </div>
               <div className="services__service__title">
-                <span>{index + 1}</span>
-                <h2>{type}</h2>
+                <span>0{index + 1}</span>
+                <h2>{service.type}</h2>
               </div>
-              <p className="services__service__description">{text}</p>
+              <p className="services__service__description">{service.text}</p>
               <img src={play} alt="Play" />
-            </div>
+            </motion.div>
           );
         })}
       </div>
